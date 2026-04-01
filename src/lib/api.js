@@ -6,7 +6,7 @@ import { addDays, differenceInDays, format } from 'date-fns'
 export async function fetchTrips(userId) {
   const { data, error } = await supabase
     .from('trips')
-    .select('*, days(count), places(count, completed)')
+    .select('*, places(*)')
     .eq('user_id', userId)
     .eq('is_archived', false)
     .order('start_date', { ascending: true })
